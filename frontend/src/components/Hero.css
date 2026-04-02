@@ -1,0 +1,357 @@
+/* HERO SECTION */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+.hero {
+  background: linear-gradient(120deg,#071e17,#0d2c23,#071e17);
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 40px;
+  color: white;
+}
+
+::selection {
+  background-color: #1f4f3b; 
+  color:#fff; 
+
+}
+
+.hero-container {
+  max-width: 1300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* LEFT IMAGE */
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  position: relative; /* This is key - makes it a positioning context */
+  display: inline-block; /* Keeps image natural size */
+  overflow: hidden;
+}
+.scanner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Clicks go through to image */
+}
+
+.scanner-line {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  width: 462px;
+  height: 3px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    #5a9e44 25%,
+    #00ff00 50%,
+    #5a9e44 75%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px #00ff88;
+  animation: scan 2.5s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { 
+    top: 100%; 
+    opacity: 0; 
+  }
+}
+.hero-image img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* BADGE */
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #5a9e44, #2d5016);
+  color: white;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(90, 158, 68, 0.4);
+  animation: badgeFloat 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.hero-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255,255,255,0.3), 
+    transparent);
+  animation: shine 2s infinite;
+}
+
+.hero-badge svg {
+  animation: zapPulse 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 4px #00ff88);
+}
+
+/* @keyframes badgeFloat {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 4px 15px rgba(90, 158, 68, 0.4);
+  }
+  50% { 
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(90, 158, 68, 0.6);
+  }
+} */
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes zapPulse {
+  0%, 100% { 
+    transform:  rotate(0deg);
+  }
+  50% { 
+    transform:  rotate(5deg);
+  }
+}
+
+
+html[lang="ta"] .hero-badge,
+[data-lang="ta"] .hero-badge {
+  font-family: 'Noto Sans Tamil', sans-serif !important;
+  font-size:13px;
+}
+/* TITLE */
+
+.hero-title {
+  font-size: 52px;
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: 'Exo 2','Inter','sans-serif';
+  transform: translateY(30px);
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+}
+html[lang="ta"] .hero-title, [data-lang="ta"]  .hero-title{
+   font-family: 'Noto Sans Tamil', sans-serif !important;
+   font-size:42px;
+}
+.hero-title span {
+  background: linear-gradient(135deg, #5a9e44, #00ff88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+/* DESCRIPTION */
+
+.hero-description {
+  font-size: 1.25rem;
+  max-width: 600px;
+  color: var(--text-light);
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+  margin-bottom: 2rem;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleGlow {
+  0% { filter: drop-shadow(0 0 8px rgba(90, 158, 68, 0.5)); }
+  100% { filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.8)); }
+}
+
+/* BUTTONS */
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.hero-anchors{
+  text-decoration: none;
+}
+.btn-primary {
+  background: #46b27c;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  animation: prm-btn-anime 1.5s ease-in-out infinite;
+  .btn-primary {
+  background: #46b27c;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  animation: prm-btn-anime 1.5s ease-in-out infinite;
+  }  
+}
+
+
+@keyframes prm-btn-anime {
+0%{
+  transform: translateY(0px);
+}
+50%{
+  transform: translateY(-5px);
+}
+100%{
+  transform: translateY(0px);
+}
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: #3aa56e;
+}
+
+.btn-secondary {
+  background: rgba(40,100,70,0.3);
+  border: none;
+  color: #3ec487;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  background: rgba(40,100,70,0.5);
+}
+
+/* TRUST SECTION */
+
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #a7c0b7;
+}
+
+.avatars {
+  display: flex;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #dcdcdc;
+  border: 2px solid #071e17;
+  margin-left: -8px;
+}
+
+/* ========================= */
+/* TABLET RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 900px) {
+
+.hero-container {
+  grid-template-columns: 1fr;
+  text-align: center;
+  gap: 40px;
+}
+
+.hero-title {
+  font-size: 42px;
+}
+
+.hero-buttons {
+  justify-content: center;
+}
+
+.hero-trust {
+  justify-content: center;
+}
+
+}
+
+/* ========================= */
+/* MOBILE RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+.hero {
+  padding: 50px 20px;
+}
+
+.hero-title {
+  font-size: 34px;
+}
+
+.hero-description {
+  font-size: 16px;
+}
+
+.hero-buttons {
+  flex-direction: column;
+  width: 100%;
+}
+
+.btn-primary,
+.btn-secondary {
+  width: 100%;
+  justify-content: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+}
+
+.hero-trust {
+  flex-direction: column;
+  gap: 10px;
+}
+
+}

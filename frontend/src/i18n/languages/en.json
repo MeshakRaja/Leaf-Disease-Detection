@@ -1,0 +1,93 @@
+{
+  "header": {
+    "title": "LeafGuard Vision AI",
+    "subtitle": "A Leaf Disease Detection using Yolov8"
+  },
+  "nav": {
+    "about": "About us"
+  },
+  "hero":{
+       "hero-badge": "POWERED BY YOLOV8",
+       "hero-title":"Early Detection for",
+       "hero-title-span":"Healthier Harvests",
+       "hero-description":" Harnessing YOLOv8 AI to identify leaf diseases in seconds with professional-grade accuracy. Protect your yield before symptoms spread.",
+       "btn-primary":"Start Detection",
+       "btn-secondary":"Learn More"
+},
+"app":{
+   "title":"Protect Your Harvest",
+   "description":"Upload a clear photo of your leaf. Our Yolov8 identifies diseases in seconds, helping you take imediate action."
+},
+"image-upload":{
+    "section-title":"Upload Image",
+    "btn-primary":"Capture",
+    "btn-secondary":"Cancel",
+    "upload-area":"Drag & Drop Image or Click to Upload",
+    "option-one":"Choose File",
+    "option-two":"Use Camera",
+    "detection-btn":"Detect Disease",
+    "detection-analyze":"Analyzing..."
+},
+"disease-info":{
+    "section-title":"Detectable Diseases",
+    "section-subtitle":" This YOLOv8 model can identify the following leaf conditions:",
+    "disease-name-one":"Healthy Leaf",
+    "disease-one-description":"Your leaf is in perfect condition with no visible diseases or pests.",
+    "disease-name-two":"Bacterial Spot",
+    "disease-two-description":"Small dark spots caused by bacterial pathogen, typically with yellow halos.",
+    "disease-name-three":"Early Blight",
+    "disease-three-description":"Concentric brown rings on older leaves, progressing upward on the plant.",
+    "disease-name-four":"Late Blight",
+    "disease-four-description":"Water-soaked lesions that rapidly spread, causing severe leaf damage.",
+    "disease-name-five":"Septoria Leaf Spot",
+    "disease-five-description":"Small circular spots with dark borders and gray centers with tiny black dots.",
+    "disease-name-six":"Leaf Mold",
+    "disease-six-description":"Fungal disease causing velvety yellow-brown spots on leaf undersides.",
+    "disease-name-seven":"Spider Mites",
+    "disease-seven-description":"Tiny pests causing stippling and fine webbing on leaves, prefer hot dry conditions.",
+    "how-title":"How It Works",
+    "step-one":"Capture Image",
+    "step-one-desc":"Upload or take a photo of the leaf affected area",
+    "step-two":"AI Analysis",
+    "step-two-desc":"YOLOv8 model analyzes the image to detect diseases",
+    "step-three":"Get Results",
+    "step-three-desc":"Receive diagnosis with confidence score and recommendations",
+    "tips-title":"Tips for Best Results",
+    "tips-list-one":"Ensure good lighting when capturing the image",
+    "tips-list-two":"Focus on the affected area of the leaf",
+    "tips-list-three":"Include the entire diseased portion in frame",
+    "tips-list-four":"Avoid shadows and glare on the leaf",
+    "tips-list-five":"Use high-quality images for better accuracy"
+  },
+  "result-display":{
+    "result-display-title":"Detection Results",
+    "section-label":"Detection Heatmap",
+    "bbox-note":"No bounding box data available for this result.",
+    "bbox-caption":"Highlighted regions indicate active disease colonies detected by YOLOv8.",
+    "disease-name":"Unknown Object",
+    "confidence-text":"Please upload a clear leaf image.",
+    "per-region-details":"Per-Region Details",
+    "dt-head-one":"Disease",
+    "dt-head-two":"Confidence",
+    "dt-head-three":"Location",
+    "confidence-distribution":"Confidence Distribution",
+    "info-title":"About this condition",
+    "recommendations-title":"Recommended Actions",
+    "footer-note":"ⓘ This is an AI-based analysis using YOLOv8. For critical issues, consult a plant specialist.",
+    "confidence-label": "Confidence:"
+  },
+  "footer":{
+    "footer-title":"LeafGuard Vision AI",
+    "footer-desc":"AI-powered disease detection using YOLOv8.",
+    "feature-title":"Features",
+    "feature-list-one":"Image Upload",
+    "feature-list-two":"Camera Capture",
+    "feature-list-three":"Disease Detection",
+    "feature-list-four":"Smart Recommendations",
+    "resources-title":"Resources",
+    "resources-list-one":"YOLOv8 Docs",
+    "resources-list-two":"React Guide",
+    "resources-list-three":"Vite Docs"
+  }
+
+}

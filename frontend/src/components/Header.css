@@ -1,0 +1,240 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;1,400&display=swap');
+/* ===== HEADER ===== */
+.header {
+  width: 100%;
+  background-color: #1f4f3a;
+  padding: 18px 40px;
+  color: white;
+}
+
+/* Container */
+.header-container {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== LOGO ===== */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  width: 44px;      /* 👈 Slightly larger container */
+  height: 44px;
+  border-radius: 12px;
+  /* background: rgba(255,255,255,0.15); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: logoicon 2s ease-in-out infinite;
+  will-change: transform;
+  overflow: hidden; /* 👈 Clips img to border-radius */
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
+}
+
+.logo-icon img {
+  width: 28px;      /* 👈 Perfect img size */
+  height: 28px;
+  object-fit: contain;  /* 👈 Keeps logo proportions */
+  object-position: center;
+}
+
+
+@keyframes logoicon {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* DEFAULT ENGLISH FONTS */
+.header-title {
+  font-size: 22px;
+  /* font-weight: bold; */
+  font-family:'Poppins',sans-serif;
+  margin: 0;
+  line-height: 1.2;
+  /* letter-spacing: 2px; */
+  text-transform: uppercase;
+}
+
+.header-subtitle {
+  font-size: 12px;
+  opacity: 0.8;
+  /* letter-spacing: 1px; */
+  margin: 0;
+  font-family:'Poppins',sans-serif;
+
+
+}
+
+/* TAMIL FONTS - ONLY WHEN TAMIL SELECTED */
+html[lang="ta"] .header-title,
+[data-lang="ta"] .header-title {
+  font-family: 'Noto Sans Tamil', 'Exo 2', sans-serif !important;
+  font-size: 21px; /* Slightly smaller for Tamil */
+  letter-spacing: 0.5px;
+}
+
+html[lang="ta"] .header-subtitle,
+[data-lang="ta"] .header-subtitle {
+  font-family: 'Noto Sans Tamil', 'Inter', sans-serif !important;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.3s;
+  font-family:'Poppins',sans-serif;
+
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+/* TAMIL NAV LINKS */
+html[lang="ta"] .nav-link,
+[data-lang="ta"] .nav-link {
+  font-family: 'Noto Sans Tamil', sans-serif !important;
+}
+
+/* ===== DASHBOARD BUTTON ===== */
+.btn-dashboard {
+  background: white;
+  color: #2f6b50;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family:'Poppins',sans-serif;
+
+}
+
+.btn-dashboard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* TAMIL BUTTON */
+html[lang="ta"] .btn-dashboard,
+[data-lang="ta"] .btn-dashboard {
+  font-family: 'Noto Sans Tamil', sans-serif !important;
+}
+
+/* ===== LANGUAGE SWITCHER ===== */
+.language-switcher {
+  display: flex;
+  gap: 8px;
+  margin-left: 15px;
+}
+
+.lang-btn {
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family:'Poppins',sans-serif;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+}
+
+.lang-btn:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.lang-btn.active {
+  background: white;
+  color: #1f4f3a;
+  border-color: white;
+  font-weight: 600;
+}
+
+/* ========================= */
+/* TABLET RESPONSIVE */
+@media (max-width: 900px) {
+  .header {
+    padding: 16px 30px;
+  }
+
+  .header-title {
+    font-size: 20px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+}
+
+/* ========================= */
+/* MOBILE RESPONSIVE */
+@media (max-width: 600px) {
+  .header {
+    padding: 14px 20px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .logo-section {
+    width: 100%;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+  }
+
+  .btn-dashboard {
+    padding: 7px 16px;
+    font-size: 13px;
+  }
+
+  .language-switcher {
+    margin-left: 0;
+    gap: 6px;
+  }
+
+  .lang-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}

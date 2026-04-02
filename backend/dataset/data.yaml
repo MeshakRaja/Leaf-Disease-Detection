@@ -1,0 +1,11 @@
+path: dataset
+
+train: images/train
+val: images/val
+
+names:
+  0: Healthy
+  1: Bacterial Spot
+  2: Early Blight
+  3: Late Blight
+  4: Spider Mites

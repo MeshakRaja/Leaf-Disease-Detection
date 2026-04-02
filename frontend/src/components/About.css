@@ -1,0 +1,462 @@
+/* ============================================================
+   About.css — CropGuard AI | Organic · Earthy · Alive
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --green-900: #0f2b1a;
+  --green-800: #1a4029;
+  --green-700: #235c38;
+  --green-600: #2d7a4a;
+  --green-400: #4db87a;
+  --green-200: #a8e4c0;
+  --green-100: #d4f0e0;
+  --green-50:  #eef8f2;
+
+  --amber-700: #92450d;
+  --amber-500: #d97706;
+  --amber-400: #f59e0b;
+  --amber-100: #fef3c7;
+
+  --red-500:   #dc2626;
+  --red-100:   #fee2e2;
+
+  --soil:      #3d2b1f;
+  --cream:     #faf8f2;
+  --warm-gray: #6b7280;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+
+  --shadow-card: 0 2px 0 0 rgba(15,43,26,.12), 0 8px 32px rgba(15,43,26,.08);
+  --shadow-lift: 0 4px 0 0 rgba(15,43,26,.18), 0 20px 60px rgba(15,43,26,.16);
+
+  --easing: cubic-bezier(.22,.68,0,1.2);
+  --ease-smooth: cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Base Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Page Shell ── */
+.about-page {
+  min-height: 100vh;
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(77,184,122,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(245,158,11,.10) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='2' cy='2' r='1' fill='%23235c38' fill-opacity='.06'/%3E%3C/svg%3E");
+  font-family: var(--font-body);
+  padding: 3rem 1rem 5rem;
+  overflow-x: hidden;
+}
+
+/* ── Container ── */
+.about-container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 24px;
+}
+
+/* Story card spans full width */
+.story-card {
+  grid-column: 1 / -1;
+}
+
+/* ── Cards ── */
+.about-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-card);
+  border: 1.5px solid rgba(35,92,56,.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform .35s var(--easing), box-shadow .35s var(--ease-smooth);
+
+  /* Entrance animation */
+  opacity: 0;
+  transform: translateY(32px) scale(.98);
+  animation: cardReveal .6s var(--easing) forwards;
+}
+
+.about-card:nth-child(1) { animation-delay: .05s; }
+.about-card:nth-child(2) { animation-delay: .15s; }
+.about-card:nth-child(3) { animation-delay: .25s; }
+.about-card:nth-child(4) { animation-delay: .35s; }
+
+@keyframes cardReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.about-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Decorative corner leaf */
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  opacity: .06;
+  transition: opacity .35s;
+}
+
+.about-card:hover::before {
+  opacity: .12;
+}
+
+.mission-card::before  { background: var(--green-600); }
+.problem-card::before  { background: var(--red-500); }
+.story-card::before    { background: var(--amber-500); }
+.tech-card::before     { background: var(--green-800); }
+
+/* ── Card Icon ── */
+.card-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+  display: inline-block;
+  animation: iconBounce 2.4s var(--easing) infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.about-card:hover .card-icon {
+  animation-play-state: running;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%       { transform: translateY(-6px) rotate(-4deg); }
+  75%       { transform: translateY(-3px) rotate(3deg); }
+}
+
+/* ── Headings ── */
+.about-card h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--green-900);
+  margin-bottom: .75rem;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+
+/* Animated underline on h2 */
+.about-card h2::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 0;
+  border-radius: 2px;
+  margin-top: 6px;
+  transition: width .4s var(--ease-smooth) .1s;
+}
+
+.about-card:hover h2::after { width: 40px; }
+
+.mission-card h2::after { background: var(--green-400); }
+.problem-card h2::after { background: var(--red-500); }
+.story-card   h2::after { background: var(--amber-400); }
+.tech-card    h2::after { background: var(--green-600); }
+
+/* ── Body Text ── */
+.about-card p {
+  font-size: .975rem;
+  line-height: 1.7;
+  color: var(--warm-gray);
+}
+
+/* ── Mission Card accent ── */
+.mission-card {
+  background: linear-gradient(145deg, #fff 60%, var(--green-50) 100%);
+}
+
+/* ── Problem Card accent ── */
+.problem-card {
+  background: linear-gradient(145deg, #fff 60%, var(--red-100) 100%);
+}
+
+/* ── Story Card (Full-Width) ── */
+.story-card {
+  background: linear-gradient(140deg, var(--green-900) 0%, var(--green-800) 55%, var(--green-700) 100%);
+  border-color: transparent;
+  color: #fff;
+}
+
+.story-card h2 {
+  color: var(--green-200);
+}
+
+.story-card > p {
+  color: rgba(255,255,255,.65);
+  margin-bottom: 1.75rem;
+}
+
+/* Team members */
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 1.25rem 0;
+}
+
+.team-member {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius-sm);
+  padding: .875rem 1rem;
+  transition: background .25s, border-color .25s, transform .25s var(--easing);
+  cursor: default;
+}
+
+.team-member:hover {
+  background: rgba(255,255,255,.13);
+  border-color: rgba(77,184,122,.4);
+  transform: translateX(4px);
+}
+
+.team-member .emoji {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.team-member strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .95rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.team-member span + * {
+  color: rgba(255,255,255,.7);
+  font-size: .85rem;
+  line-height: 1.4;
+}
+
+/* Motivation blurb */
+.motivation {
+  margin-top: 1.5rem !important;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--amber-400);
+  background: rgba(245,158,11,.08);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-style: italic;
+  color: rgba(255,255,255,.8) !important;
+  font-size: .92rem !important;
+}
+
+/* ── Tech Card ── */
+.tech-card {
+  background: linear-gradient(145deg, #fff 60%, var(--green-50) 100%);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 1.25rem;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(35,92,56,.1);
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+  transition: border-color .25s, box-shadow .25s, transform .3s var(--easing);
+  cursor: default;
+}
+
+.tech-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--green-50), transparent 70%);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.tech-item:hover {
+  border-color: var(--green-400);
+  box-shadow: 0 4px 20px rgba(77,184,122,.2);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.tech-item:hover::before {
+  opacity: 1;
+}
+
+/* Icon coloring per item */
+.tech-item:nth-child(1) svg { color: var(--green-600); }
+.tech-item:nth-child(2) svg { color: var(--amber-500); }
+.tech-item:nth-child(3) svg { color: #2563eb; }
+.tech-item:nth-child(4) svg { color: var(--soil); }
+
+.tech-item svg {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  transition: transform .3s var(--easing);
+}
+
+.tech-item:hover svg {
+  transform: scale(1.18) rotate(-5deg);
+}
+
+.tech-item h3 {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--green-900);
+  margin-top: 2px;
+}
+
+.tech-item p {
+  position: relative;
+  z-index: 1;
+  font-size: .8rem;
+  color: var(--warm-gray);
+  font-weight: 500;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+/* ── Accuracy badge ── */
+.tech-item:first-child::after {
+  content: '98%';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--green-600);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 99px;
+  letter-spacing: .04em;
+  z-index: 1;
+}
+
+/* ── Page-level entrance ── */
+@keyframes pageFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.about-page {
+  animation: pageFade .4s ease forwards;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .about-card,
+  .about-card:hover,
+  .card-icon,
+  .tech-item,
+  .team-member,
+  .about-page {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ── Responsive: Tablet ── */
+@media (max-width: 760px) {
+  .about-page {
+    padding: 2rem .75rem 4rem;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .story-card {
+    grid-column: 1;
+  }
+
+  .team-list {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+/* ── Responsive: Mobile ── */
+@media (max-width: 480px) {
+  .about-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: .875rem 1rem;
+  }
+
+  .tech-item svg {
+    flex-shrink: 0;
+  }
+
+  .tech-item h3 {
+    font-size: .9rem;
+  }
+
+  .motivation {
+    font-size: .88rem !important;
+  }
+}

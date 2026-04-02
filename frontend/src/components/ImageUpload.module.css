@@ -1,0 +1,512 @@
+/* ============================================================
+   ImageUpload.module.css
+   Layout:
+     [Upload Area  ]   [How It Works]
+     [Camera/Btns  ]   [How It Works]
+          [Tips — centered below both]
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;1,400&display=swap');
+
+/* ── Variables ── */
+:root {
+  --bg:           #f4f1ec;
+  --surface:      #ffffff;
+  --surface-alt:  #edeae4;
+  --border:       #ddd7cc;
+  --primary:      #3a6b4a;
+  --primary-dark: #2c5238;
+  --primary-soft: #e6eeea;
+  --accent:       #c9a96e;
+  --text:         #2d2820;
+  --text-muted:   #7a6f63;
+  --danger:       #c0392b;
+  --danger-soft:  #fdf0ef;
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    20px;
+  --shadow-sm:    0 2px 10px rgba(0,0,0,0.06);
+  --col-gap:      24px;
+  --transition:   0.22s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── Page wrapper ── */
+.image-upload {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  border-radius:10px;
+  padding: 40px 28px 60px;
+  box-sizing: border-box;
+  max-width: 1020px;
+  margin: 0 auto;
+
+  /* Outer stack: title → grid → tips */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--col-gap);
+}
+
+/* ── Section title ── */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+  line-height: 1.25;
+  width: 100%;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+/* ════════════════════════════════════════
+   TWO-COLUMN GRID
+   Left: upload / camera / buttons / detect
+   Right: how-it-works card
+════════════════════════════════════════ */
+/* ── SUCCESS POPUP ── */
+.success-popup {
+  position: fixed;
+ 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.25s ease-out;
+}
+
+.popup-content {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding:25px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 50px rgba(16, 185, 129, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  max-width: 420px;
+  text-align: center;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.success-icon {
+  color: #ecfdf5 !important;
+  flex-shrink: 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  transition: all var(--transition);
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 700px) {
+  .popup-content {
+    margin: 20px;
+    padding: 20px 24px;
+    font-size: 1rem;
+    max-width: none;
+  }
+}
+
+.main-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--col-gap);
+  align-items: start;
+}
+
+/* Left column */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Right column */
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── Camera container ── */
+.camera-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.camera-video {
+  width: 100%;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+.camera-controls {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Upload drop area ── */
+.upload-area {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: 44px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  text-align: center;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.upload-area:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.upload-area svg {
+  opacity: 0.55;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.upload-area:hover svg {
+  transform: translateY(-3px);
+  opacity: 1;
+}
+
+.file-input { display: none; }
+
+/* ── Image preview ── */
+.image-preview {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.preview-image {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  max-height: 240px;
+  display: block;
+}
+
+.image-preview p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+  word-break: break-all;
+  text-align: center;
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  z-index: 1;
+}
+
+.remove-image-btn:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ── Button group: Upload image & Use Camera — stacked vertically ── */
+.button-group {
+  display: flex;
+  flex-direction: column;  /* ✅ one below the other */
+  gap: 10px;
+  width: 100%;
+}
+
+/* ── Shared button styles ── */
+.btn-primary,
+.btn-secondary,
+.btn-detect {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 3px 12px rgba(58,107,74,0.22);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 5px 18px rgba(58,107,74,0.35);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-alt);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* ── Detect button ── */
+.btn-detect {
+  padding: 14px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  border-radius: var(--radius-md);
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 18px rgba(58,107,74,0.28);
+}
+
+.btn-detect:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(58,107,74,0.38);
+}
+
+.btn-detect:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Error ── */
+.error-message {
+  background: var(--danger-soft);
+  border: 1px solid rgba(192,57,43,0.22);
+  color: var(--danger);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+}
+
+/* ════════════════════════════════════════
+   BOTTOM SECTION wrapper from JSX
+   → dissolve it so children reach their
+     correct grid slots via right-column
+════════════════════════════════════════ */
+.bottom-section {
+  display: contents;
+}
+
+/* ── How It Works card (right column) ── */
+.how-it-works {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.how-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text);
+  margin: 0 0 20px;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: grid;
+  place-items: center;
+}
+
+.step h4 {
+  margin: 0 0 3px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.step p {
+  margin: 0;
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ════════════════════════════════════════
+   TIPS — centered below both columns
+════════════════════════════════════════ */
+.tips-section {
+  background: linear-gradient(135deg, #fdf8f0, #f5f0e8);
+  border: 1px solid #e8dfc8;
+  border-radius: var(--radius-lg);
+  padding: 28px 36px;
+  box-shadow: var(--shadow-sm);
+  width: 55%;          /* centered strip below the two columns */
+  max-width: 480px;
+  box-sizing: border-box;
+}
+
+.tips-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+
+.tips-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.tips-list li {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  padding-left: 20px;
+  position: relative;
+}
+
+.tips-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.6rem;
+  top: 4px;
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (max-width: 700px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tips-section {
+    width: 100%;
+    max-width: 100%;
+    padding: 22px 18px;
+  }
+}

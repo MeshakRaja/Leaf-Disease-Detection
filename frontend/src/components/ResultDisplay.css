@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;1,400&display=swap');
+
+/* ────────────────────────────────────────────
+   Base container
+──────────────────────────────────────────── */
+.result-display {
+  background: #f4f1ec;
+  border-radius: 16px;
+  padding: 28px;
+  font-family: 'Playfair Display', sans-serif;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ────────────────────────────────────────────
+   Header
+──────────────────────────────────────────── */
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.result-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.btn-reset {
+  background: var(--background);
+  border: 2px solid var(--border-color);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--accent-green);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-reset:hover {
+  border-color: var(--accent-green);
+  background: var(--light-green);
+  color: white;
+}
+
+/* ────────────────────────────────────────────
+   Generic section wrapper
+──────────────────────────────────────────── */
+.section {
+  margin-bottom: 20px;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--primary-green);
+  margin-bottom: 10px;
+}
+
+/* ────────────────────────────────────────────
+   A. Bounding-box canvas section
+──────────────────────────────────────────── */
+.bbox-section {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.bbox-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 160px;
+}
+
+.bbox-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.bbox-note {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  padding: 32px 16px;
+  margin: 0;
+}
+
+.bbox-caption {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--text-light);
+  font-style: italic;
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+/* ────────────────────────────────────────────
+   B. Primary result card
+──────────────────────────────────────────── */
+.result-card {
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  animation: slideInScale 0.4s ease-out;
+  border: 2px solid;
+  background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+}
+
+@keyframes slideInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Disease color variants — unchanged from original */
+.disease-healthy    { border-color: #4caf50; background: linear-gradient(135deg,rgba(76,175,80,.08),rgba(76,175,80,.04)); }
+.disease-healthy .result-icon { color: #4caf50; }
+.disease-bacterial  { border-color: #ff9800; background: linear-gradient(135deg,rgba(255,152,0,.08),rgba(255,152,0,.04)); }
+.disease-bacterial .result-icon { color: #ff9800; }
+.disease-blight     { border-color: #f44336; background: linear-gradient(135deg,rgba(244,67,54,.08),rgba(244,67,54,.04)); }
+.disease-blight .result-icon { color: #f44336; }
+.disease-blight-late{ border-color: #d32f2f; background: linear-gradient(135deg,rgba(211,47,47,.08),rgba(211,47,47,.04)); }
+.disease-blight-late .result-icon { color: #d32f2f; }
+.disease-septoria   { border-color: #ff6f00; background: linear-gradient(135deg,rgba(255,111,0,.08),rgba(255,111,0,.04)); }
+.disease-septoria .result-icon { color: #ff6f00; }
+.disease-ylcv       { border-color: #fbc02d; background: linear-gradient(135deg,rgba(251,192,45,.08),rgba(251,192,45,.04)); }
+.disease-ylcv .result-icon { color: #fbc02d; }
+.disease-mosaic     { border-color: #e91e63; background: linear-gradient(135deg,rgba(233,30,99,.08),rgba(233,30,99,.04)); }
+.disease-mosaic .result-icon { color: #e91e63; }
+.disease-mold       { border-color: #9c27b0; background: linear-gradient(135deg,rgba(156,39,176,.08),rgba(156,39,176,.04)); }
+.disease-mold .result-icon { color: #9c27b0; }
+.disease-mites      { border-color: #673ab7; background: linear-gradient(135deg,rgba(103,58,183,.08),rgba(103,58,183,.04)); }
+.disease-mites .result-icon { color: #673ab7; }
+.disease-unknown    { border-color: #757575; background: linear-gradient(135deg,rgba(117,117,117,.08),rgba(117,117,117,.04)); }
+.disease-unknown .result-icon { color: #757575; }
+
+.result-icon {
+  flex-shrink: 0;
+  animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.result-content { flex: 1; }
+
+.disease-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.disease-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-dark);
+  letter-spacing: -0.3px;
+}
+
+/* Severity pill — replaces old badge */
+.severity-pill {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.sev-critical { background: #fdecea; color: #c62828; }
+.sev-high     { background: #fff3e0; color: #e65100; }
+.sev-medium   { background: #fffde7; color: #f9a825; }
+.sev-low      { background: #e8f5e9; color: #2e7d32; }
+
+.confidence-bar {
+  height: 8px;
+  background: var(--background);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-green) 0%, #2d5016 100%);
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.confidence-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--text-light);
+  margin: 0 0 12px;
+}
+.confidence-text strong { color: var(--text-dark); font-weight: 700; }
+
+/* Summary stat chips */
+.summary-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--primary-green);
+  background: rgba(90,158,68,.1);
+  border: 1px solid rgba(90,158,68,.2);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* ────────────────────────────────────────────
+   Collapsible toggle button
+──────────────────────────────────────────── */
+.toggle-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-green);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  transition: all 0.2s ease;
+  margin-bottom: 0;
+}
+
+.toggle-btn span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toggle-btn:hover {
+  border-color: var(--accent-green);
+  background: rgba(90,158,68,.04);
+}
+
+/* ────────────────────────────────────────────
+   B2. Per-region details table
+──────────────────────────────────────────── */
+.details-table {
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.dt-head, .dt-row {
+  display: grid;
+  grid-template-columns: 28px 1fr 110px 100px;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+}
+
+.dt-head {
+  background: var(--primary-green);
+  color: #fff;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.dt-row {
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-dark);
+  transition: background 0.2s;
+}
+
+.dt-row:last-child { border-bottom: none; }
+.dt-row:hover { background: rgba(90,158,68,.04); }
+
+.dt-idx {
+  font-weight: 700;
+  color: var(--accent-green);
+  text-align: center;
+}
+
+.dt-name { font-weight: 500; }
+
+.dt-conf {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--accent-green);
+  position: relative;
+}
+
+.dt-conf-bar {
+  display: block;
+  height: 4px;
+  max-width: 48px;
+  background: var(--accent-green);
+  border-radius: 2px;
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+.dt-loc {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-light);
+  font-size: 11px;
+}
+
+/* ────────────────────────────────────────────
+   D. Confidence chart
+──────────────────────────────────────────── */
+.conf-chart {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.conf-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 48px;
+  align-items: center;
+  gap: 12px;
+}
+
+.conf-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conf-track {
+  height: 8px;
+  background: var(--background);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.conf-bar {
+  height: 100%;
+  border-radius: 4px;
+  animation: growBar 0.6s ease-out both;
+  transform-origin: left;
+}
+
+@keyframes growBar {
+  from { width: 0 !important; }
+  to   { /* width set inline */ }
+}
+
+.conf-pct {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: right;
+}
+
+/* ────────────────────────────────────────────
+   C. Disease info & recommendations
+   (preserved from original)
+──────────────────────────────────────────── */
+.disease-info {
+  background: linear-gradient(135deg,rgba(90,158,68,.08),rgba(168,213,168,.06));
+  border-left: 4px solid var(--accent-green);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.info-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-green);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.info-description {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.recommendations { margin-bottom: 24px; }
+
+.recommendations-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-green);
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.recommendations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recommendation-item {
+  display: flex;
+  gap: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-dark);
+  line-height: 1.5;
+  padding: 10px;
+  background: var(--background);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.recommendation-item:hover {
+  background: linear-gradient(135deg,rgba(90,158,68,.08),rgba(168,213,168,.06));
+  transform: translateX(4px);
+}
+
+.recommendation-bullet {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+/* ────────────────────────────────────────────
+   Footer
+──────────────────────────────────────────── */
+.result-footer {
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-note {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--text-light);
+  margin: 0;
+  text-align: center;
+}
+
+/* ────────────────────────────────────────────
+   Responsive
+──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .result-display { padding: 20px; }
+
+  .result-card { flex-direction: column; gap: 16px; }
+  .result-icon { width: 40px; height: 40px; }
+  .disease-name { font-size: 16px; }
+  .recommendations-list { gap: 8px; }
+  .recommendation-item { padding: 8px; font-size: 12px; }
+
+  .dt-head, .dt-row {
+    grid-template-columns: 24px 1fr 80px;
+  }
+  .dt-loc { display: none; }
+
+  .conf-row {
+    grid-template-columns: 120px 1fr 44px;
+  }
+}
